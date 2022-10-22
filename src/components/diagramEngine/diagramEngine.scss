@@ -1,0 +1,159 @@
+@import "../../global_scss/utilitaries.scss";
+
+.diagram__container {
+  * {
+    user-select: none;
+  }
+  width: 100%;
+  background-color: #f8f9ff;
+  height: calc(100% - 100px);
+  position: relative;
+  cursor: move;
+  overflow: auto;
+  .block {
+    background-color: #ffffff80;
+    border-radius: 5px;
+    position: absolute;
+    left: 30px;
+    top: 20px;
+    min-width: 250px;
+    cursor: default;
+    &.node-type-state {
+      .dragbar {
+        background-color: rgb(190, 21, 21);
+      }
+    }
+
+    &.node__type--function {
+      .dragbar {
+        background-color: rgb(24, 21, 190);
+      }
+    }
+
+    &.node__type--variable {
+      .dragbar {
+        background-color: rgb(21, 190, 63);
+      }
+    }
+
+    &.node__type-entry--point {
+      .dragbar {
+        background-color: rgb(190, 165, 21);
+      }
+    }
+
+    &.node__type--condition {
+      .dragbar {
+        background-color: rgb(190, 21, 182);
+      }
+    }
+
+    &.node__type--event {
+      .dragbar {
+        background-color: rgb(255, 94, 0);
+      }
+      input:disabled {
+        background-color: rgba(255, 94, 0, 0.5);
+      }
+    }
+
+    &.node__type--connector {
+      .dragbar {
+        background-color: rgb(0, 164, 214);
+      }
+    }
+    .dragbar {
+      padding: 0 15px;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      height: 30px;
+      background-color: $blue__light;
+      cursor: grab;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      user-select: none;
+      font-size: 14px;
+      &:active {
+        cursor: grabbing;
+      }
+    }
+    .block__content {
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      .title {
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 15px;
+      }
+      .params__container {
+        width: 50%;
+        .name {
+          width: 100%;
+          font-size: 10px;
+          margin-bottom: 5px;
+          text-transform: uppercase;
+        }
+        &:first-of-type {
+          border-right: 1px solid black;
+          padding-right: 5px;
+          svg {
+            position: absolute;
+            left: -22.5px;
+            top: -2.5px;
+            cursor: pointer;
+            &:hover {
+              top: -2px;
+              left: -20.5px;
+              zoom: 105%;
+            }
+          }
+        }
+        &:last-of-type {
+          border-left: 1px solid black;
+          padding-left: 5px;
+          .name {
+            text-align: right;
+          }
+          svg {
+            position: absolute;
+            right: -22.5px;
+            top: -2.5px;
+            cursor: pointer;
+            &:hover {
+              top: -2px;
+              right: -20.5px;
+              zoom: 105%;
+            }
+          }
+        }
+        .input__container {
+          width: 100%;
+          margin-bottom: 10px;
+          position: relative;
+          &:last-of-type {
+            margin-bottom: 0;
+          }
+          input {
+            width: 100%;
+            font-size: 14px;
+            padding: 5px;
+            border-radius: 5px;
+            color: white;
+            background-color: rgb(21, 190, 63);
+            border: 1px solid rgb(21, 190, 63);
+            text-transform: uppercase;
+            &:disabled {
+              background-color: transparent;
+              color: black;
+              border: none;
+              cursor: not-allowed;
+            }
+          }
+        }
+      }
+    }
+  }
+}
